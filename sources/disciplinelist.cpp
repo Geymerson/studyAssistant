@@ -71,6 +71,10 @@ void DisciplineList::updateList() {
     disciList.close();
 }
 
+int DisciplineList::length() {
+    return count();
+}
+
 void DisciplineList::saveList() {
     //Update list before saving data
     updateList();
@@ -124,6 +128,7 @@ void DisciplineList::loadList() {
         append(discipline);//Insert discipline in the list
         disciFile.close();
     }
+    emit disciplinesLoaded();
 }
 
 int DisciplineList::rowCount(const QModelIndex &parent) const {

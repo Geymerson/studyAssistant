@@ -25,9 +25,11 @@ Item {
     id: root
 
     signal disciplinesSaved()
+    signal disciplinesLoaded()
 
     property alias actionBox_z: actionBox.z
     property alias actionBoxVisible: actionBox.visible
+    property alias disciplineList: disciplineList
 
     function saveList() {
         disciplineList.saveList();
@@ -59,8 +61,10 @@ Item {
         id: disciplineList
         Component.onCompleted: {
             loadList();
+            //console.log(length());
         }
         onDisciplinesSaved: root.disciplinesSaved()
+        onDisciplinesLoaded: root.disciplinesLoaded()
     }
 
     //This box will pop up when

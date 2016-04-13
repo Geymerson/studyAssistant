@@ -28,5 +28,8 @@
         <file>images/toolBar.png</file>
         <file>images/backwardButton.png</file>
         <file>images/forwardButton.png</file>
+        <file>jbQuick/QChart.js</file>
+        <file>jbQuick/QChartGallery.js</file>
+        <file>qmlsource/QChart.qml</file>
     </qresource>
 </RCC>

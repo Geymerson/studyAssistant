@@ -47,7 +47,7 @@ Window {
                     if(stackView.depth == 1) {
                         visible = false
                     }
-                    else if(stackView.depth == 3) {
+                    else if(stackView.depth == 5) {
                         forwardButton.visible = true
                     }
                 }
@@ -71,6 +71,12 @@ Window {
                 }
                 else if(stackView.depth == 3) {
                     stackView.push(projectScreen)
+                }
+                else if(stackView.depth == 4) {
+                    stackView.push(gridScreen)
+                }
+                else if(stackView.depth == 5) {
+                    stackView.push(performanceScreen)
                     visible = false
                 }
             }
@@ -79,9 +85,16 @@ Window {
 
     DisciplineScreen {
         id: disciplineScreen
+
+        onDisciplinesLoaded: {
+            performanceScreen.disciplineList = disciplineScreen.disciplineList
+            performanceScreen.loadDiscipline();
+            performanceScreen.loadGrades();
+        }
+
         onDisciplinesSaved: {
             exerciseScreen.saveActivities()
-        }
+        }        
     }
 
     ExerciseScreen {
@@ -99,9 +112,14 @@ Window {
         onActivitiesSavedChanged: Qt.quit()
     }
 
-    //    PerformanceScreen {
-    //        id: temp
-    //    }
+    GridScreen {
+        id: gridScreen
+    }
+
+    PerformanceScreen {
+        id: performanceScreen
+        //disciplineList: disciplineScreen.disciplineList
+    }
 
     StackView {
         id: stackView
@@ -160,6 +178,7 @@ Window {
 
         onSettingsClicked: {
             console.log("Not configured yet!")
+            console.log(disciplineScreen.disciplineList.length())
         }
     }
 }

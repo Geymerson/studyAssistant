@@ -43,6 +43,9 @@ public:
     /** ### Update discipline list file ### **/
     Q_INVOKABLE void updateList();
 
+    /** Return list length**/
+    Q_INVOKABLE int length();
+
 public: // interface QAbstractListModel
     virtual int rowCount(const QModelIndex &parent) const;
     virtual QVariant data(const QModelIndex &index, int role) const;
@@ -51,6 +54,7 @@ public: // interface QAbstractListModel
 signals:
     void countChanged(int arg);
     void disciplinesSaved();
+    void disciplinesLoaded();
 
 protected: // interface QAbstractListModel
     virtual QHash<int, QByteArray> roleNames() const;
