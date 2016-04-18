@@ -2,11 +2,8 @@
 #include <QQmlApplicationEngine>
 #include <QtQml>
 
-#include "headers/datamanager.h"
-#include "headers/activitylist.h"
 #include "headers/disciplinelist.h"
 #include "headers/exerciselist.h"
-#include "headers/activity.h"
 #include "headers/testlist.h"
 #include "headers/projectlist.h"
 

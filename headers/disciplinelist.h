@@ -6,7 +6,6 @@
 #include <QDebug>
 #include <QMutex>
 #include <QAbstractListModel>
-#include "discipline.h"
 #include "datamanager.h"
 
 class DisciplineList: public QAbstractListModel, DataManager {

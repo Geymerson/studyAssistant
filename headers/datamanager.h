@@ -32,7 +32,6 @@ public:
 private:
     QList<Discipline *> m_disciplineList;
     QList<Activity *> m_activityList;
-    bool m_loaded;
     int m_loadType;
 };
 
