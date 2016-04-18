@@ -112,3 +112,7 @@ void ExerciseList::loadActivities() {
     emit activitiesLoaded();
 }
 
+int ExerciseList::length() const {
+    return count();
+}
+

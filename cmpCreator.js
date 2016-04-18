@@ -70,3 +70,9 @@ function createActivity(name, discipline, type, subDate, grade, achievedGrade, p
     }
     return true;
 }
+
+ function loadDisciplines() {
+        for(var i = 0; i < disciplineList.length(); i++) {
+            comboBoxModel.append({text: disciplineList.get(i).name})
+        }
+    }

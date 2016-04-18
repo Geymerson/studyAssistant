@@ -113,3 +113,7 @@ void ProjectList::loadActivities() {
     m_data = getActivityList();
     emit activitiesLoaded();
 }
+
+int ProjectList::length() const {
+    return count();
+}

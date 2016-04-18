@@ -30,6 +30,7 @@ public:
     Q_INVOKABLE Activity* get(int index);
     Q_INVOKABLE void saveActivities();
     Q_INVOKABLE void loadActivities();
+    Q_INVOKABLE int length() const;
 
 public:
     virtual int rowCount(const QModelIndex &parent) const;

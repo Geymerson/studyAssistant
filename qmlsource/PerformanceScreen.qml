@@ -22,7 +22,7 @@ import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.1
 import QtQuick.Controls.Styles 1.4
-import psa.org 1.0
+import sa.project 1.0
 
 Item {
     id: root
@@ -34,18 +34,7 @@ Item {
     }
 
     property var disciplineList: undefined
-    property var model: undefined
-
-    ListModel {
-        id: comboBoxModel
-    }
-
-    function loadDiscipline() {
-        //console.log("method invoked. List lentgth " + disciplineList.length())
-        for(var i = 0; i < root.disciplineList.length(); i++) {
-            comboBoxModel.append({text: root.disciplineList.get(i).name})
-        }
-    }
+    //property var model: undefined
 
     Image {
         id: row
@@ -75,11 +64,15 @@ Item {
                 color: "blue"
             }
 
-            ComboBox {
+            MComboBox {
                 id: disciplineComboBox
-                model: comboBoxModel
+                itemList: disciplineList
                 anchors.right: parent.right
+                anchors.verticalCenter: parent.verticalCenter
                 Layout.fillWidth: true
+                Component.onCompleted: {
+                    loadBoxItems()
+                }
             }
         }
     }
@@ -93,17 +86,17 @@ Item {
         anchors.top: row.bottom
         anchors.topMargin: parent.height * 0.03
 
-//        QChart {
-//            id: performanceChart
-//            width: root.width/2; height: root.height/3
-//            anchors.centerIn: parent
-//            chartAnimated: true
-//            chartAnimationEasing: Easing.InOutElastic
-//            chartAnimationDuration: 2000
-//            chartData: ChartsData.ChartLineData
-//            chartType: Charts.ChartType.LINE
-//            visible: true
-//        }
+        QChart {
+            id: performanceChart
+            width: root.width/2; height: root.height/3
+            anchors.centerIn: parent
+            chartAnimated: true
+            chartAnimationEasing: Easing.InOutElastic
+            chartAnimationDuration: 2000
+            chartData: ChartsData.ChartLineData
+            chartType: Charts.ChartType.LINE
+            visible: true
+        }
     }
 
     TextArea {
@@ -127,7 +120,7 @@ Item {
             //ChartsData.ChartLineData.datasets[0].data[i] = get(i).grades;
             //ChartsData.ChartLineData.datasets[1].data[i] = i + 1;
         }
-        chart_line.chartData = ChartsData.ChartLineData;
-        chart_line.update()
+        performanceChart.chartData = ChartsData.ChartLineData;
+        performanceChart.update()
     }
 }//end element item

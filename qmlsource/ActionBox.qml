@@ -31,14 +31,14 @@ Item {
     property int componentType: 0
     property int activityType: 0
     property var activityParent: undefined
-
+    property alias itemList: disciplineComboBox.itemList
     property alias text: title.text
     property alias nameLabelVisible: nameLabel.visible
     property alias nameTextFieldVisible: nameTextField.visible
     property alias professorLabelVisible: professorLabel.visible
     property alias professorTextFieldVisible: professorTextField.visible
     property alias disciplineLabelVisible: disciplineLabel.visible
-    property alias disciplineTextFieldVisible: disciplineTextField.visible
+    property alias disciplineComboBoxVisible: disciplineComboBox.visible
     property alias gradeLabelVisible: gradeLabel.visible
     property alias gradeTextFieldVisible: gradeTextField.visible
     property alias achievedGradeLabelVisible: achievedGradeLabel.visible
@@ -113,12 +113,16 @@ Item {
                         }
                         else if(root.componentType == 1) {//Activities
                             CmpCreator.createActivity(nameTextField.text,
-                                                      disciplineTextField.text,
+                                                      disciplineComboBox.currentText,
                                                       root.activityType,
                                                       dateTextField.text,
                                                       gradeTextField.text,
                                                       achievedGradeTextField.text,
                                                       root.activityParent)
+                            console.log(disciplineComboBox.currentText)
+                            nameTextField.text = ""
+                            gradeTextField.text = ""
+                            achievedGradeTextField.text = ""
                         }
                         root.z = 0
                         root.visible = false
@@ -176,10 +180,14 @@ Item {
                     visible: false
                 }
 
-                TextField {
-                    id: disciplineTextField
-                    font.pixelSize: 12
+                MComboBox {
+                    id: disciplineComboBox
+                    Layout.fillWidth: true
+                    //font.pixelSize: 12
                     visible: false
+                    Component.onCompleted: {
+                        loadBoxItems()
+                    }
                 }
 
                 Label {

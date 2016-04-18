@@ -70,6 +70,7 @@ Item {
         visible: false
         z: 0
         componentType: 0
+        itemList: disciplineList
     }
 
     ColumnLayout {

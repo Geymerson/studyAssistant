@@ -46,7 +46,7 @@ public:
     Q_INVOKABLE void updateDisciplines();
 
     /** Return list length**/
-    Q_INVOKABLE int length();
+    Q_INVOKABLE int length() const;
 
 public: // interface QAbstractListModel
     virtual int rowCount(const QModelIndex &parent) const;

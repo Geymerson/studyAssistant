@@ -111,3 +111,7 @@ void TestList::loadActivities() {
     m_data = getActivityList();
     emit activitiesLoaded();
 }
+
+int TestList::length() const {
+    return count();
+}

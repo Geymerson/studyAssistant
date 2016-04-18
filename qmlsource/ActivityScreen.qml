@@ -36,8 +36,8 @@ Item {
     property alias componentType: actionBox.componentType
     property alias activityTitle: background.screenTitle
     property alias activityType: actionBox.activityType
+    property alias itemList: actionBox.itemList
     property var activityList: undefined
-    //property bool activitiesSaved: false
 
     //This box will pop up when
     //the add button is pressed
@@ -56,9 +56,10 @@ Item {
         achievedGradeLabelVisible: true
         achievedGradeTextFieldVisible: true
         disciplineLabelVisible: true
-        disciplineTextFieldVisible: true
+        disciplineComboBoxVisible: true
         dateLabelVisible: true
         dateTextFieldVisible: true
+        itemList: itemList
     }
 
     ColumnLayout {

@@ -59,7 +59,7 @@ void DisciplineList::updateDisciplines() {
     updateDisciplineList();
 }
 
-int DisciplineList::length() {
+int DisciplineList::length() const {
     return count();
 }
 

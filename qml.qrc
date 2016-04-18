@@ -28,5 +28,10 @@
         <file>qmlsource/DisciplineScreen.qml</file>
         <file>qmlsource/ProjectScreen.qml</file>
         <file>qmlsource/TestScreen.qml</file>
+        <file>qmlsource/GridScreen.qml</file>
+        <file>qmlsource/PerformanceScreen.qml</file>
+        <file>jbQuick/QChart.js</file>
+        <file>jbQuick/QChartGallery.js</file>
+        <file>qmlsource/MComboBox.qml</file>
     </qresource>
 </RCC>

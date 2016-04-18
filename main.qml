@@ -72,10 +72,15 @@ Window {
             exerciseScreen.saveExercises()
             console.log("saving exercises")
         }
+
+        onDisciplineListChanged: {
+            performanceScreen.loadDiscipline()
+        }
     }
 
     ExerciseScreen {
         id: exerciseScreen
+        itemList: disciplineScreen.disciplineList
         onExercisesSaved: {
             projectScreen.saveProjects()
             console.log("saving projects")
@@ -85,6 +90,7 @@ Window {
 
     ProjectScreen {
         id: projectScreen
+        itemList: disciplineScreen.disciplineList
         onProjectsSaved: {
             testScreen.saveTests()
             console.log("saving tests")
@@ -95,20 +101,25 @@ Window {
 
     TestScreen {
         id: testScreen
+        itemList: disciplineScreen.disciplineList
         onTestsSaved: {
             console.log("exiting")
             Qt.quit()
         }
     }
 
-//    GridScreen {
-//        id: gridScreen
-//    }
+    GridScreen {
+        id: gridScreen
+    }
 
-//    PerformanceScreen {
-//        id: performanceScreen
-//        //disciplineList: disciplineScreen.disciplineList
-//    }
+    PerformanceScreen {
+        id: performanceScreen
+        disciplineList: disciplineScreen.disciplineList
+        Component.onCompleted: {
+//            loadDisciplines()
+            loadGrades()
+        }
+    }
 
     StackView {
         id: stackView
