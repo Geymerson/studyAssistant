@@ -1,35 +1,32 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>qmlsource/ExerciseScreen.qml</file>
-        <file>qmlsource/GridScreen.qml</file>
-        <file>qmlsource/TestScreen.qml</file>
-        <file>qmlsource/PerformanceScreen.qml</file>
-        <file>qmlsource/ProjectScreen.qml</file>
-        <file>qmlsource/MButton.qml</file>
-        <file>images/addButton.png</file>
+        <file>images/backwardButton.png</file>
+        <file>images/forwardButton.png</file>
+        <file>images/toolBar.png</file>
+        <file>images/quitButton.png</file>
+        <file>images/settingsButton.png</file>
         <file>images/removeButton.png</file>
-        <file>qmlsource/ActivityModel.qml</file>
-        <file>qmlsource/DisciplineScreen.qml</file>
-        <file>qmlsource/ActionBox.qml</file>
-        <file>images/background.jpg</file>
-        <file>cmpCreator.js</file>
-        <file>qmlsource/MDiscipline.qml</file>
-        <file>images/stickyNote.png</file>
+        <file>images/addButton.png</file>
         <file>images/flag3.png</file>
         <file>images/flag2.png</file>
         <file>images/flag1.png</file>
-        <file>qmlsource/Background.qml</file>
-        <file>qmlsource/MActivity.qml</file>
+        <file>images/stickyNote.png</file>
+        <file>images/graphBG.png</file>
+        <file>images/background.jpg</file>
         <file>qmlsource/ActivityScreen.qml</file>
+        <file>qmlsource/ExerciseScreen.qml</file>
+        <file>qmlsource/Background.qml</file>
+        <file>qmlsource/ActionBox.qml</file>
+        <file>cmpCreator.js</file>
         <file>qmlsource/MToolBar.qml</file>
-        <file>images/settingsButton.png</file>
-        <file>images/quitButton.png</file>
-        <file>images/toolBar.png</file>
-        <file>images/backwardButton.png</file>
-        <file>images/forwardButton.png</file>
-        <file>jbQuick/QChart.js</file>
-        <file>jbQuick/QChartGallery.js</file>
         <file>qmlsource/QChart.qml</file>
+        <file>qmlsource/MDiscipline.qml</file>
+        <file>qmlsource/MButton.qml</file>
+        <file>qmlsource/MActivity.qml</file>
+        <file>qmlsource/ActivityModel.qml</file>
+        <file>qmlsource/DisciplineScreen.qml</file>
+        <file>qmlsource/ProjectScreen.qml</file>
+        <file>qmlsource/TestScreen.qml</file>
     </qresource>
 </RCC>

@@ -1,6 +1,6 @@
 /**
     Study Assistant: an application to help the management of study activities
-    Copyright (C) {2016},  @author: Geymerson Ramos <geymerson.r@gmail.com>
+    Copyright (C) 2016,  @author: Geymerson Ramos <geymerson.r@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.1
-import psa.org 1.0
+import sa.project 1.0
 
 Item {
     id: root
@@ -30,11 +30,6 @@ Item {
         screenTitle: "Activity Title"
     }
 
-    function saveActivities() {
-        activityList.saveActivities();
-        activitiesSaved = true
-    }
-
     property alias actionBox_z: actionBox.z
     property alias actionBoxVisible: actionBox.visible
     property alias actionBoxText: actionBox.text
@@ -42,7 +37,7 @@ Item {
     property alias activityTitle: background.screenTitle
     property alias activityType: actionBox.activityType
     property var activityList: undefined
-    property bool activitiesSaved: false
+    //property bool activitiesSaved: false
 
     //This box will pop up when
     //the add button is pressed

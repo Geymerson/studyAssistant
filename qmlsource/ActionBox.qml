@@ -1,6 +1,6 @@
 /**
     Study Assistant: an application to help the management of study activities
-    Copyright (C) {2016},  @author: Geymerson Ramos <geymerson.r@gmail.com>
+    Copyright (C) 2016,  @author: Geymerson Ramos <geymerson.r@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -108,6 +108,8 @@ Item {
                         if(root.componentType == 0) {//Disciplines
                             CmpCreator.createDiscipline(nameTextField.text,
                                                         professorTextField.text)
+                            nameTextField.text = ""
+                            professorTextField.text  = ""
                         }
                         else if(root.componentType == 1) {//Activities
                             CmpCreator.createActivity(nameTextField.text,
@@ -118,7 +120,6 @@ Item {
                                                       achievedGradeTextField.text,
                                                       root.activityParent)
                         }
-
                         root.z = 0
                         root.visible = false
                     }

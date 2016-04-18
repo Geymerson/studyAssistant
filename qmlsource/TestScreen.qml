@@ -17,7 +17,7 @@
 **/
 
 import QtQuick 2.5
-import psa.org 1.0
+import sa.project 1.0
 
 ActivityScreen {
     id: root
@@ -26,8 +26,15 @@ ActivityScreen {
     componentType: 1
     activityType: 1
 
-    ActivityList {
+    signal testsSaved()
+
+    function saveTests() {
+        testList.saveActivities()
+    }
+
+    TestList {
         id: testList
+        onActivitiesSaved: root.testsSaved()
     }
     activityList: testList
 }

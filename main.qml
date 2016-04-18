@@ -1,25 +1,7 @@
-/**
-    Study Assistant: an application to help the management of study activities
-    Copyright (C) 2016,  @author: Geymerson Ramos <geymerson.r@gmail.com>
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-**/
-
 import QtQuick 2.5
 import QtQuick.Window 2.2
 import QtQuick.Controls 1.4
-import psa.org 1.0
+import sa.project 1.0
 import "qmlsource"
 
 Window {
@@ -86,40 +68,47 @@ Window {
     DisciplineScreen {
         id: disciplineScreen
 
-        onDisciplinesLoaded: {
-            performanceScreen.disciplineList = disciplineScreen.disciplineList
-            performanceScreen.loadDiscipline();
-            performanceScreen.loadGrades();
-        }
-
         onDisciplinesSaved: {
-            exerciseScreen.saveActivities()
-        }        
+            exerciseScreen.saveExercises()
+            console.log("saving exercises")
+        }
     }
 
     ExerciseScreen {
         id: exerciseScreen
-        onActivitiesSavedChanged: projectScreen.saveActivities()
+        onExercisesSaved: {
+            projectScreen.saveProjects()
+            console.log("saving projects")
+//            Qt.quit()
+        }
     }
 
     ProjectScreen {
         id: projectScreen
-        onActivitiesSavedChanged: testScreen.saveActivities()
+        onProjectsSaved: {
+            testScreen.saveTests()
+            console.log("saving tests")
+//            console.log("exiting...")
+//            Qt.quit()
+        }
     }
 
     TestScreen {
         id: testScreen
-        onActivitiesSavedChanged: Qt.quit()
+        onTestsSaved: {
+            console.log("exiting")
+            Qt.quit()
+        }
     }
 
-    GridScreen {
-        id: gridScreen
-    }
+//    GridScreen {
+//        id: gridScreen
+//    }
 
-    PerformanceScreen {
-        id: performanceScreen
-        //disciplineList: disciplineScreen.disciplineList
-    }
+//    PerformanceScreen {
+//        id: performanceScreen
+//        //disciplineList: disciplineScreen.disciplineList
+//    }
 
     StackView {
         id: stackView
@@ -154,10 +143,13 @@ Window {
         anchors.bottom: parent.bottom
 
         onQuitClicked: {
-            disciplineScreen.saveList();
+            disciplineScreen.saveList()
+            console.log("saving disciplines")
+            //Qt.quit()
         }
 
         onAddClicked: {
+
             if(stackView.depth == 1) {
                 disciplineScreen.actionBoxVisible = true
                 disciplineScreen.actionBox_z = 10

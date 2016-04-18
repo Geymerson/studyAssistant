@@ -1,6 +1,6 @@
 /**
     Study Assistant: an application to help the management of study activities
-    Copyright (C) {2016},  @author: Geymerson Ramos <geymerson.r@gmail.com>
+    Copyright (C) 2016,  @author: Geymerson Ramos <geymerson.r@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.1
-import psa.org 1.0
+import sa.project 1.0
 
 Item {
     id: root
@@ -32,7 +32,7 @@ Item {
     property alias disciplineList: disciplineList
 
     function saveList() {
-        disciplineList.saveList();
+        disciplineList.saveDisciplines();
     }
 
     //Image background
@@ -59,10 +59,6 @@ Item {
     //Our discipline list
     DisciplineList {
         id: disciplineList
-        Component.onCompleted: {
-            loadList();
-            //console.log(length());
-        }
         onDisciplinesSaved: root.disciplinesSaved()
         onDisciplinesLoaded: root.disciplinesLoaded()
     }

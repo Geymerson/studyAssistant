@@ -1,12 +1,15 @@
 #ifndef DISCIPLINELIST_H
 #define DISCIPLINELIST_H
 
-#include "discipline.h"
+#include <QObject>
 #include <QList>
-#include <QFile>
+#include <QDebug>
+#include <QMutex>
 #include <QAbstractListModel>
+#include "discipline.h"
+#include "datamanager.h"
 
-class DisciplineList: public QAbstractListModel {
+class DisciplineList: public QAbstractListModel, DataManager {
     Q_OBJECT
     Q_PROPERTY(int count READ count NOTIFY countChanged)
 public:
@@ -35,13 +38,13 @@ public:
     Q_INVOKABLE Discipline* get(int index);
 
     /** ### Save discipline list to files ### **/
-    Q_INVOKABLE void saveList();
+    Q_INVOKABLE void saveDisciplines();
 
     /** ### Load discipline list from app's files ### **/
-    Q_INVOKABLE void loadList();
+    Q_INVOKABLE void loadDisciplines();
 
     /** ### Update discipline list file ### **/
-    Q_INVOKABLE void updateList();
+    Q_INVOKABLE void updateDisciplines();
 
     /** Return list length**/
     Q_INVOKABLE int length();
@@ -65,6 +68,7 @@ private:
     QList<Discipline*> m_data;
     QHash<int, QByteArray> m_roleNames;
     int m_count;
+    mutable QMutex m_mutex; //to thread safety
 };
 
 #endif // DISCIPLINELIST_H

@@ -1,4 +1,4 @@
-#include "headers/discipline.h"
+#include "../headers/discipline.h"
 
 Discipline::Discipline(QObject *parent) : QObject(parent) {
     m_grade = 0;

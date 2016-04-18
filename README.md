@@ -3,5 +3,5 @@ An application to help the management of study activities made to the Software E
 
 icons made by Freepik from www.flaticon.com 
 
-Plots made through the QCharts library https://github.com/jwintz/qchart.js
+Plots made through the QCharts library https://github.com/jwintz/qchart.js created by Julien Wintz
 

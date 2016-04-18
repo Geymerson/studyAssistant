@@ -42,49 +42,81 @@ Item {
 
     function loadDiscipline() {
         //console.log("method invoked. List lentgth " + disciplineList.length())
-        for(var i = 0; i < disciplineList.length(); i++) {
-            comboBoxModel.append({text: disciplineList.get(i).name})
+        for(var i = 0; i < root.disciplineList.length(); i++) {
+            comboBoxModel.append({text: root.disciplineList.get(i).name})
         }
     }
 
-    RowLayout {
+    Image {
         id: row
+        source: "../images/flag" + (Math.floor(Math.random() * (4 - 1)) + 1) + ".png"
+        height: 70
         anchors.top: parent.top
         anchors.topMargin: parent.height * 0.09
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.leftMargin: parent.width * 0.08
-        anchors.rightMargin: parent.width * 0.08
+        anchors.leftMargin: parent.width * 0.03
+        anchors.rightMargin: parent.width * 0.03
 
-        Label {
-            id: disciplineLabel
-            text: "Discipline:"
-            font.pixelSize: 18
-            font.family: "courier"
-            font.bold: true
-            color: "blue"
-        }
-
-        ComboBox {
-            id: disciplineComboBox
-            model: comboBoxModel
+        RowLayout {
+            //anchors.centerIn: parent
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: parent.left
             anchors.right: parent.right
-            Layout.fillWidth: true
+            anchors.leftMargin: parent.width * 0.05
+            anchors.rightMargin: parent.width * 0.13
+
+            Label {
+                id: disciplineLabel
+                text: "Discipline:"
+                font.pixelSize: 18
+                font.family: "courier"
+                font.bold: true
+                color: "blue"
+            }
+
+            ComboBox {
+                id: disciplineComboBox
+                model: comboBoxModel
+                anchors.right: parent.right
+                Layout.fillWidth: true
+            }
         }
     }
 
-    QChart {
-        id: performanceChart
-        width: parent.width/2; height: parent.height/3
-        chartAnimated: true
-        chartAnimationEasing: Easing.InOutElastic
-        chartAnimationDuration: 2000
-        chartData: ChartsData.ChartLineData
-        chartType: Charts.ChartType.LINE
+    Image {
+        id: graphBG
+        source: "../images/graphBG.png"
+        width: parent.width - parent.width * 0.10
+        height: parent.height/2
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: row.bottom
-        anchors.topMargin: parent.height * 0.08
-        visible: true
+        anchors.topMargin: parent.height * 0.03
+
+//        QChart {
+//            id: performanceChart
+//            width: root.width/2; height: root.height/3
+//            anchors.centerIn: parent
+//            chartAnimated: true
+//            chartAnimationEasing: Easing.InOutElastic
+//            chartAnimationDuration: 2000
+//            chartData: ChartsData.ChartLineData
+//            chartType: Charts.ChartType.LINE
+//            visible: true
+//        }
+    }
+
+    TextArea {
+        id: notesTextArea
+        font.pixelSize: 12
+        text: "General notes:"
+        anchors {
+            top: graphBG.bottom
+            bottom: root.bottom
+            bottomMargin: root.height * 0.05
+            horizontalCenter: parent.horizontalCenter
+        }
+        enabled: false
     }
 
     //TODO: This is just an example

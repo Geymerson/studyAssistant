@@ -2,7 +2,6 @@
 #define DISCIPLINE_H
 
 #include <QObject>
-#include "activity.h"
 
 class Discipline : public QObject
 {
