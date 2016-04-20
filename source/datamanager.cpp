@@ -198,6 +198,7 @@ void DataManager::saveActivityList() {
         toFile.append(QString::number(acti->grade())+';');
         toFile.append(QString::number(acti->achievedGrade())+';');
         toFile.append(QString::number(acti->activityType())+";");
+        qDebug() << acti->date().toString();
         toFile.append(acti->date().toString("dd.MM.yyyy")+';');
         toFile.append("not defined");
         toFile.append("}\n");

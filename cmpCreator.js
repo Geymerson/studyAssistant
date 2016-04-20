@@ -1,6 +1,6 @@
 /**
     Study Assistant: an application to help the management of study activities
-    Copyright (C) {2016},  @author: Geymerson Ramos <geymerson.r@gmail.com>
+    Copyright (C) 2016,  @author: Geymerson Ramos <geymerson.r@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -17,6 +17,61 @@
 **/
 
 var component;
+var appDate = new Date();
+//var cellWidth = 100;
+//var cellHeight = 30;
+//var rowNumber = 10;
+//var columnNumber = 5;
+//var gridSize = cellWidth * cellHeight;
+//var grid = new Array(gridSize)
+
+//function getIndex(row, column) {
+//    return row * 5 + column;
+//}
+
+//function loadGrid() {
+//    //Destroy previous grid
+//    for(var i = 0; i < gridSize; i++) {
+//        if(grid[i] != null) {
+//            grid[i].destroy();
+//        }
+//    }
+
+//    grid = new Array(gridSize);
+
+//    for (var row = 0; row < rowNumber; row++) {
+//        for (var col = 0; col < columnNumber; col++) {
+//            grid[getIndex(row, col)] = null;
+//            createGridElement(row, col, disciName);
+//        }
+//    }
+//}
+
+//function createGridElement(row, column, disciName) {
+//    if (component == null) {
+//        component = Qt.createComponent("../qmlsource/MGridElement.qml");
+//    }
+
+//    if( component.status == Component.Ready ) {
+//        var dynamicObject = component.createObject(disciplineGrid)
+//        if (dynamicObject == null) {
+//            console.log("error creating grid element");
+//            console.log(component.errorString());
+//            return false;
+//        }
+//        dynamicObject.text = disciName
+//        dynamicObject.x = column * cellWidth;
+//        dynamicObject.y = row * cellHeight;
+//        dynamicObject.width = cellWidth;
+//        dynamicObject.height = cellHeight;
+//        grid[ getIndex(row, column) ] = dynamicObject;
+//    }
+//    else {
+//        console.log("error creating grid element component");
+//        console.log(component.errorString());
+//        return false;
+//    }
+//}
 
 function createDiscipline(name, professor) {
     if (component == null) {
@@ -33,7 +88,6 @@ function createDiscipline(name, professor) {
         dynamicObject.name = name;
         dynamicObject.professor = professor;
         disciplineList.append(dynamicObject);
-        //disciplineList.saveList();
     }
     else {
         console.log("error loading block component");
@@ -43,10 +97,10 @@ function createDiscipline(name, professor) {
     return true;
 }
 
-function createActivity(name, discipline, type, subDate, grade, achievedGrade, parent) {
-	if (component == null) {
+function createActivity(name, discipline, type, day, month, grade, achievedGrade, parent) {
+    if (component == null) {
         component = Qt.createComponent("../qmlsource/MActivity.qml");
-	}
+    }
 
     if (component.status == Component.Ready) {
         var dynamicObject = component.createObject(parent);
@@ -57,8 +111,10 @@ function createActivity(name, discipline, type, subDate, grade, achievedGrade, p
         }
         dynamicObject.name = name;
         dynamicObject.discipline = discipline;
-        dynamicObject.activityType = type;
-        dynamicObject.date = new Date(); //change later
+        dynamicObject.activityType = type;        
+
+        dynamicObject.date = String(appDate.getFullYear()) + '-' + month + '-' + day
+        console.log(dynamicObject.date.toString())
         dynamicObject.grade = grade;
         dynamicObject.achievedGrade = achievedGrade;
         parent.append(dynamicObject);
@@ -71,8 +127,8 @@ function createActivity(name, discipline, type, subDate, grade, achievedGrade, p
     return true;
 }
 
- function loadDisciplines() {
-        for(var i = 0; i < disciplineList.length(); i++) {
-            comboBoxModel.append({text: disciplineList.get(i).name})
-        }
+function loadDisciplines() {
+    for(var i = 0; i < disciplineList.length(); i++) {
+        comboBoxModel.append({text: disciplineList.get(i).name})
     }
+}

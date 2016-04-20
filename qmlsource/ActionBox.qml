@@ -112,10 +112,12 @@ Item {
                             professorTextField.text  = ""
                         }
                         else if(root.componentType == 1) {//Activities
+                            var date = new Date()
                             CmpCreator.createActivity(nameTextField.text,
                                                       disciplineComboBox.currentText,
                                                       root.activityType,
-                                                      dateTextField.text,
+                                                      dateTextField.text1,
+                                                      dateTextField.text2,
                                                       gradeTextField.text,
                                                       achievedGradeTextField.text,
                                                       root.activityParent)
@@ -123,6 +125,8 @@ Item {
                             nameTextField.text = ""
                             gradeTextField.text = ""
                             achievedGradeTextField.text = ""
+                            dateTextField.text1 = ""
+                            dateTextField.text2 = ""
                         }
                         root.z = 0
                         root.visible = false
@@ -191,6 +195,24 @@ Item {
                 }
 
                 Label {
+                    id: daysLabel
+                    text: "Class Day:"
+                    font.family: "courier"
+                    font.pixelSize: 12
+                    font.bold: true
+                    color: "black"
+                    visible: false
+                }
+
+                ComboBox {
+                    id: daysComboBox
+                    Layout.fillWidth: true
+                    //font.pixelSize: 12
+                    visible: false
+                    model: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday","Saturday","Sunday"]
+                }
+
+                Label {
                     id: dateLabel
                     text: "Submission date:"
                     font.family: "courier"
@@ -200,11 +222,24 @@ Item {
                     visible: false
                 }
 
-                TextField {
+                MTimePicker {
                     id: dateTextField
-                    font.pixelSize: 12
                     visible: false
+                    Layout.fillWidth: true
+                    Component.onCompleted: {
+                        if(!date) {
+                            placeholderText1 = "hh"
+                            placeholderText2 = "mm"
+                        }
+                    }
                 }
+
+//                TextField {
+//                    id: dateTextField
+//                    font.pixelSize: 12
+//                    visible: false
+//                    Layout.fillWidth: true
+//                }
 
                 Label {
                     id: gradeLabel

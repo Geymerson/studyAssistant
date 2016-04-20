@@ -33,5 +33,8 @@
         <file>jbQuick/QChart.js</file>
         <file>jbQuick/QChartGallery.js</file>
         <file>qmlsource/MComboBox.qml</file>
+        <file>qmlsource/MGrid.qml</file>
+        <file>qmlsource/GridElement.qml</file>
+        <file>qmlsource/MTimePicker.qml</file>
     </qresource>
 </RCC>

@@ -30,7 +30,7 @@ Item {
 
     Background {
         id: background
-        screenTitle: "How i'm doing..."
+        screenTitle: "How am i doing?"
     }
 
     property var disciplineList: undefined
