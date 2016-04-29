@@ -127,26 +127,26 @@ Window {
         focus: true
         initialItem: disciplineScreen
 
-        delegate: StackViewDelegate {
-            function transitionFinished(properties) {
-                properties.exitItem.opacity = 1
-            }
+//        delegate: StackViewDelegate {
+//            function transitionFinished(properties) {
+//                properties.exitItem.opacity = 1
+//            }
 
-            pushTransition: StackViewTransition {
-                PropertyAnimation {
-                    target: enterItem
-                    property: "opacity"
-                    from: 0
-                    to: 1
-                }
-                PropertyAnimation {
-                    target: exitItem
-                    property: "opacity"
-                    from: 1
-                    to: 0
-                }
-            }
-        }
+//            pushTransition: StackViewTransition {
+//                PropertyAnimation {
+//                    target: enterItem
+//                    property: "opacity"
+//                    from: 0
+//                    to: 1
+//                }
+//                PropertyAnimation {
+//                    target: exitItem
+//                    property: "opacity"
+//                    from: 1
+//                    to: 0
+//                }
+//            }
+//        }
     }
 
     MToolBar{
