@@ -106,8 +106,11 @@ Item {
                     anchors.fill: parent
                     onClicked: {
                         if(root.componentType == 0) {//Disciplines
-                            CmpCreator.createDiscipline(nameTextField.text,
+                            if(nameTextField.text !== "" &&
+                                    professorTextField.text !== "") {
+                                    CmpCreator.createDiscipline(nameTextField.text,
                                                         professorTextField.text)
+                            }
                             nameTextField.text = ""
                             professorTextField.text  = ""
                         }

@@ -10,7 +10,7 @@ DisciplineList::DisciplineList(QObject *parent)
 }
 
 DisciplineList::~DisciplineList() {
-    //m_data.clear();
+
 }
 
 void DisciplineList::insert(int index, Discipline* discipline) {
