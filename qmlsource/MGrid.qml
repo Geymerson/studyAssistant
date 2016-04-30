@@ -1,14 +1,19 @@
 import QtQuick 2.5
 import QtQuick.Layouts 1.1
+import "../cmpCreator.js" as CmpCreator
 
 Item {
-    id: root
+    //    color: "green"
+    id: disciGrid
+    anchors.centerIn: parent
+    //    anchors.horizontalCenter: parent.horizontalCenter
+    width: 500
+    height: 500
 
-    Grid {
-        id: grid
-        spacing: 3
-        rows: 10; columns: 5
+    property int cellHeight: height/10
+    property int cellWidth: width/5
+
+    Component.onCompleted: {
+        CmpCreator.startGrid()
     }
-
-
 }

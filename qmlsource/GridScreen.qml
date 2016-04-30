@@ -17,6 +17,7 @@
 **/
 
 import QtQuick 2.5
+import QtQuick.Controls 1.4
 
 import "../cmpCreator.js" as CmpCreator
 
@@ -29,4 +30,19 @@ Item {
         screenTitle: "Grid"
     }
 
+    Flickable {
+        width: parent.width - parent.width * 0.1
+        height: parent.height * 0.70
+        clip: true
+        anchors.centerIn: parent
+        contentHeight: gridS.height
+        contentWidth: gridS.width
+        leftMargin:5
+        rightMargin: 5
+
+        MGrid {
+            id: gridS
+            z: 3
+        }
+    }
 }

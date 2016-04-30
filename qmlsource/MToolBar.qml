@@ -21,21 +21,21 @@ import "../cmpCreator.js" as CmpCreator
 
 Image {
     id: root
-    width: parent.width; height: 20
+    width: parent.width; height: 60
     source: "../images/toolBar.png"
 
     signal addClicked()
     signal quitClicked()
     signal settingsClicked()
 
-    MouseArea {
-        id: mouseArea
-        anchors.fill: parent
-        hoverEnabled: true
-        onHoveredChanged: {
-            root.height == 20 ? root.height = 60 : root.height = 20
-        }
-    }
+//    MouseArea {
+//        id: mouseArea
+//        anchors.fill: parent
+//        hoverEnabled: true
+//        onHoveredChanged: {
+//            root.height == 20 ? root.height = 60 : root.height = 20
+//        }
+//    }
 
     Item {
         width: parent.width
@@ -79,11 +79,11 @@ Image {
         }
     }
 
-    //Tool bar animation
-    Behavior on height {
-        NumberAnimation {
-            duration: 300
-            easing.type: Easing.InOutQuad
-        }
-    }
+//    //Tool bar animation
+//    Behavior on height {
+//        NumberAnimation {
+//            duration: 300
+//            easing.type: Easing.InOutQuad
+//        }
+//    }
 }

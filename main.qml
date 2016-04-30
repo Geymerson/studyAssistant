@@ -9,6 +9,14 @@ Window {
     visible: true
     width: 310; height: 500
 
+    Discipline {
+        id: temp
+
+        Component.onCompleted: {
+            console.log(temp.scheduleLength())
+        }
+    }
+
     Item {
         id: navigators
         anchors.top: appWindow.top

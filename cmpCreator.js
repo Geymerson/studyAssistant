@@ -17,61 +17,85 @@
 **/
 
 var component;
-var appDate = new Date();
-//var cellWidth = 100;
-//var cellHeight = 30;
-//var rowNumber = 10;
-//var columnNumber = 5;
-//var gridSize = cellWidth * cellHeight;
-//var grid = new Array(gridSize)
+//var appDate = new Date();
+var maxRow = 11;
+var maxColumn = 5;
+var maxIndex = maxColumn * maxRow;
+var grid = new Array(maxIndex);
 
-//function getIndex(row, column) {
-//    return row * 5 + column;
-//}
+function getIndex(row, column) {
+    console.log(row * maxColumn + column);
+    return row * maxColumn + column;
+}
 
-//function loadGrid() {
-//    //Destroy previous grid
-//    for(var i = 0; i < gridSize; i++) {
-//        if(grid[i] != null) {
-//            grid[i].destroy();
-//        }
-//    }
+function startGrid() {
+    for (var i = 0; i < maxIndex; i++) {
+        if (grid[i] != null)
+            grid[i].destroy();
+    }
+    maxIndex = maxRow * maxColumn;
+    grid = new Array(maxIndex);
 
-//    grid = new Array(gridSize);
+    for (var column = 0; column < maxColumn; column++) {
+        for (var row = 0; row < maxRow; row++) {
+            if( getIndex(row, column) == 0) {
+                createClass(row, column, "Monday");
+            }
+            else if(getIndex(row, column) == 1) {
+                createClass(row, column, "Tuesday", 0, 0);
+            }
+            else if(getIndex(row, column) == 2) {
+                createClass(row, column, "Wednesday", 0, 0);
+            }
+            else if(getIndex(row, column) == 3) {
+                createClass(row, column, "Thursday", 0, 0);
+            }
+            else if( getIndex(row, column) == 4) {
+                createClass(row, column, "Friday", 0, 0);
+            }
+            else {
+                disciGrid[ getIndex(row, column) ] = null;
+                createClass(row, column, "any", 0, 0);
+            }
+        }
+    }
+}
 
-//    for (var row = 0; row < rowNumber; row++) {
-//        for (var col = 0; col < columnNumber; col++) {
-//            grid[getIndex(row, col)] = null;
-//            createGridElement(row, col, disciName);
-//        }
-//    }
-//}
+function createClass(row, column, discipline, hour, time) {
+    if (component == null) {
+        component = Qt.createComponent("../qmlsource/MClass.qml");
+    }
 
-//function createGridElement(row, column, disciName) {
-//    if (component == null) {
-//        component = Qt.createComponent("../qmlsource/MGridElement.qml");
-//    }
+    if (component.status == Component.Ready) {
+        var dynamicObject = component.createObject(disciGrid);
+        if (dynamicObject == null) {
+            console.log("error creating class");
+            console.log(component.errorString());
+            return false;
+        }
+        if(row == 0) {
+            dynamicObject.visibleStartsAt = false
+            dynamicObject.visibleEndsAt = false
+            dynamicObject.color = "orange"
+        }
 
-//    if( component.status == Component.Ready ) {
-//        var dynamicObject = component.createObject(disciplineGrid)
-//        if (dynamicObject == null) {
-//            console.log("error creating grid element");
-//            console.log(component.errorString());
-//            return false;
-//        }
-//        dynamicObject.text = disciName
-//        dynamicObject.x = column * cellWidth;
-//        dynamicObject.y = row * cellHeight;
-//        dynamicObject.width = cellWidth;
-//        dynamicObject.height = cellHeight;
-//        grid[ getIndex(row, column) ] = dynamicObject;
-//    }
-//    else {
-//        console.log("error creating grid element component");
-//        console.log(component.errorString());
-//        return false;
-//    }
-//}
+        dynamicObject.discipline = discipline;
+        //        dynamicObject.classTime = "00:00";
+        dynamicObject.x = column * disciGrid.cellWidth;
+        dynamicObject.y = row * disciGrid.cellHeight;
+        dynamicObject.width = disciGrid.cellWidth;
+        dynamicObject.height = disciGrid.cellHeight;
+        grid[ getIndex(row, column) ] = dynamicObject;
+        //        dynamicObject.append();
+
+    }
+    else {
+        console.log("error loading class component");
+        console.log(component.errorString());
+        return false;
+    }
+    return true;
+}
 
 function createDiscipline(name, professor) {
     if (component == null) {
@@ -90,7 +114,7 @@ function createDiscipline(name, professor) {
         disciplineList.append(dynamicObject);
     }
     else {
-        console.log("error loading block component");
+        console.log("error loading discipline component");
         console.log(component.errorString());
         return false;
     }
@@ -111,7 +135,7 @@ function createActivity(name, discipline, type, day, month, grade, achievedGrade
         }
         dynamicObject.name = name;
         dynamicObject.discipline = discipline;
-        dynamicObject.activityType = type;        
+        dynamicObject.activityType = type;
 
         dynamicObject.date = String(appDate.getFullYear()) + '-' + month + '-' + day
         console.log(dynamicObject.date.toString())
@@ -120,7 +144,7 @@ function createActivity(name, discipline, type, day, month, grade, achievedGrade
         parent.append(dynamicObject);
     }
     else {
-        console.log("error loading block component");
+        console.log("error loading activity component");
         console.log(component.errorString());
         return false;
     }
