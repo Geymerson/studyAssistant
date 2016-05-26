@@ -11,10 +11,6 @@ Window {
 
     Discipline {
         id: temp
-
-        Component.onCompleted: {
-            console.log(temp.scheduleLength())
-        }
     }
 
     Item {
@@ -118,6 +114,7 @@ Window {
 
     GridScreen {
         id: gridScreen
+        itemList: disciplineScreen.disciplineList
     }
 
     PerformanceScreen {
@@ -184,6 +181,10 @@ Window {
             else if(stackView.depth == 4) {
                 projectScreen.actionBoxVisible = true
                 projectScreen.actionBox_z = 10
+            }
+            else if(stackView.depth == 5) {
+                gridScreen.actionBoxVisible = true
+                gridScreen.actionBox_z = 10
             }
         }
 

@@ -10,7 +10,9 @@ SOURCES += main.cpp \
     source/exerciselist.cpp \
     source/activity.cpp \
     source/testlist.cpp \
-    source/projectlist.cpp
+    source/projectlist.cpp \
+    source/classappointment.cpp \
+    source/schedule.cpp
 
 RESOURCES += qml.qrc
 
@@ -27,4 +29,6 @@ HEADERS += \
     headers/exerciselist.h \
     headers/activity.h \
     headers/testlist.h \
-    headers/projectlist.h
+    headers/projectlist.h \
+    headers/classappointment.h \
+    headers/schedule.h

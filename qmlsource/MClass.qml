@@ -9,6 +9,7 @@ Item {
     property alias visibleStartsAt: fromLabel.visible
     property alias visibleEndsAt: toLabel.visible
     property alias color: classImage.color
+    clip: true
 
     Rectangle {
         id: classImage
@@ -29,9 +30,10 @@ Item {
                 text: "undefined"
                 anchors {
                     horizontalCenter: labels.horizontalCenter
-//                    top: labels.top
+                    top: labels.top
                 }
                 font.pixelSize: parent.height * 0.3
+
             }
 
             Text {

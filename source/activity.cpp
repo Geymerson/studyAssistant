@@ -1,7 +1,7 @@
 #include "headers/activity.h"
 
 Activity::Activity(QObject *parent) : QObject(parent) {
-
+    QQmlEngine::setObjectOwnership(this, QQmlEngine::CppOwnership);
 }
 
 QString Activity::name() const {

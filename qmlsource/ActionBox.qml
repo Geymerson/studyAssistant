@@ -31,6 +31,9 @@ Item {
     property int componentType: 0
     property int activityType: 0
     property var activityParent: undefined
+
+    property alias timePickerLabel: timePickerLabel.text
+    property alias timePickerLabel1: timePickerLabel1.text
     property alias itemList: disciplineComboBox.itemList
     property alias text: title.text
     property alias nameLabelVisible: nameLabel.visible
@@ -43,8 +46,12 @@ Item {
     property alias gradeTextFieldVisible: gradeTextField.visible
     property alias achievedGradeLabelVisible: achievedGradeLabel.visible
     property alias achievedGradeTextFieldVisible: achievedGradeTextField.visible
-    property alias dateLabelVisible: dateLabel.visible
-    property alias dateTextFieldVisible: dateTextField.visible
+    property alias timePickerLabelVisible: timePickerLabel.visible
+    property alias timePickerTextFieldVisible: timePickerTextField.visible
+    property alias timePickerLabelVisible1: timePickerLabel1.visible
+    property alias timePickerTextFieldVisible1: timePickerTextField1.visible
+    property alias daysLabelVisible: daysLabel.visible
+    property alias daysComboBoxVisible: daysComboBox.visible
 
     //ActionBox background
     Image {
@@ -119,8 +126,8 @@ Item {
                             CmpCreator.createActivity(nameTextField.text,
                                                       disciplineComboBox.currentText,
                                                       root.activityType,
-                                                      dateTextField.text1,
-                                                      dateTextField.text2,
+                                                      timePickerTextField.text1,
+                                                      timePickerTextField.text2,
                                                       gradeTextField.text,
                                                       achievedGradeTextField.text,
                                                       root.activityParent)
@@ -128,9 +135,10 @@ Item {
                             nameTextField.text = ""
                             gradeTextField.text = ""
                             achievedGradeTextField.text = ""
-                            dateTextField.text1 = ""
-                            dateTextField.text2 = ""
+                            timePickerTextField.text1 = ""
+                            timePickerTextField.text2 = ""
                         }
+
                         root.z = 0
                         root.visible = false
                     }
@@ -212,11 +220,11 @@ Item {
                     Layout.fillWidth: true
                     //font.pixelSize: 12
                     visible: false
-                    model: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday","Saturday","Sunday"]
+                    model: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
                 }
 
                 Label {
-                    id: dateLabel
+                    id: timePickerLabel
                     text: "Submission date:"
                     font.family: "courier"
                     font.pixelSize: 12
@@ -226,7 +234,7 @@ Item {
                 }
 
                 MTimePicker {
-                    id: dateTextField
+                    id: timePickerTextField
                     visible: false
                     Layout.fillWidth: true
                     Component.onCompleted: {
@@ -237,12 +245,27 @@ Item {
                     }
                 }
 
-//                TextField {
-//                    id: dateTextField
-//                    font.pixelSize: 12
-//                    visible: false
-//                    Layout.fillWidth: true
-//                }
+                Label {
+                    id: timePickerLabel1
+                    text: "Submission date:"
+                    font.family: "courier"
+                    font.pixelSize: 12
+                    font.bold: true
+                    color: "black"
+                    visible: false
+                }
+
+                MTimePicker {
+                    id: timePickerTextField1
+                    visible: false
+                    Layout.fillWidth: true
+                    Component.onCompleted: {
+                        if(!date) {
+                            placeholderText1 = "hh"
+                            placeholderText2 = "mm"
+                        }
+                    }
+                }
 
                 Label {
                     id: gradeLabel

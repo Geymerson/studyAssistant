@@ -17,14 +17,14 @@
 **/
 
 var component;
-//var appDate = new Date();
+var appDate;
 var maxRow = 11;
 var maxColumn = 5;
 var maxIndex = maxColumn * maxRow;
 var grid = new Array(maxIndex);
 
 function getIndex(row, column) {
-    console.log(row * maxColumn + column);
+//    console.log(row * maxColumn + column);
     return row * maxColumn + column;
 }
 
@@ -36,29 +36,48 @@ function startGrid() {
     maxIndex = maxRow * maxColumn;
     grid = new Array(maxIndex);
 
-    for (var column = 0; column < maxColumn; column++) {
-        for (var row = 0; row < maxRow; row++) {
-            if( getIndex(row, column) == 0) {
-                createClass(row, column, "Monday");
-            }
-            else if(getIndex(row, column) == 1) {
-                createClass(row, column, "Tuesday", 0, 0);
-            }
-            else if(getIndex(row, column) == 2) {
-                createClass(row, column, "Wednesday", 0, 0);
-            }
-            else if(getIndex(row, column) == 3) {
-                createClass(row, column, "Thursday", 0, 0);
-            }
-            else if( getIndex(row, column) == 4) {
-                createClass(row, column, "Friday", 0, 0);
-            }
-            else {
-                disciGrid[ getIndex(row, column) ] = null;
-                createClass(row, column, "any", 0, 0);
-            }
-        }
+    createClass(0, 0, "Monday");
+    createClass(0, 1, "Tuesday");
+    createClass(0, 2, "Wednesday");
+    createClass(0, 3, "Thursday");
+    createClass(0, 4, "Friday");
+
+    for(var i = 0; i < schedule.length(); i++) {
+        createClass(i + 1,
+                    schedule.getClassAppointment(i).day - 1,
+                    schedule.getClassAppointment(i).discipline.substring(0, 12),
+                    schedule.getClassAppointment(i).startsAt,
+                    schedule.getClassAppointment(i).endsAt);
     }
+
+//    for(var i = 0; i < maxIndex; i++) {
+//        disciGrid[ getIndex(row, column) ] = null;
+//        //                createClass(row, column, "any", 0, 0);
+//    }
+
+//    for (var row = 6; row < maxRow; row++) {
+//        for (var column = 0; column < maxColumn; column++) {
+////            if( getIndex(row, column) == 0) {
+////                createClass(row, column, "Monday");
+////            }
+////            else if(getIndex(row, column) == 1) {
+////                createClass(row, column, "Tuesday", 0, 0);
+////            }
+////            else if(getIndex(row, column) == 2) {
+////                createClass(row, column, "Wednesday", 0, 0);
+////            }
+////            else if(getIndex(row, column) == 3) {
+////                createClass(row, column, "Thursday", 0, 0);
+////            }
+////            else if( getIndex(row, column) == 4) {
+////                createClass(row, column, "Friday", 0, 0);
+////            }
+////            else {
+//                disciGrid[ getIndex(row, column) ] = null;
+//                createClass(row, column, "any", 0, 0);
+////            }
+//        }
+//    }
 }
 
 function createClass(row, column, discipline, hour, time) {
@@ -137,6 +156,7 @@ function createActivity(name, discipline, type, day, month, grade, achievedGrade
         dynamicObject.discipline = discipline;
         dynamicObject.activityType = type;
 
+        appDate = new Date();
         dynamicObject.date = String(appDate.getFullYear()) + '-' + month + '-' + day
         console.log(dynamicObject.date.toString())
         dynamicObject.grade = grade;

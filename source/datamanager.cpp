@@ -129,7 +129,7 @@ void DataManager::loadActivityList() {
         Activity *activity = new Activity();
         line = disciList.readLine(); //Get discipline name
         line = line.left(line.length() - 1); //Removing \n character
-//        qDebug() << line;
+        //        qDebug() << line;
         activity->setDiscipline(line);
         disciplines.append(line);
         //m_activityList.append(activity);
@@ -157,10 +157,10 @@ void DataManager::loadActivityList() {
                 Activity *activity = new Activity();
 
                 activity->setDiscipline(discipline);
-//                qDebug() << "name: "<<activity->discipline();
+                //                qDebug() << "name: "<<activity->discipline();
 
                 activity->setName(activityData.at(0));
-//                qDebug() << "name: "<<activity->name();
+                //                qDebug() << "name: "<<activity->name();
 
                 activity->setGrade(activityData.at(1).toFloat());
                 //qDebug() << "grade: "<<activity->grade();
@@ -194,7 +194,7 @@ void DataManager::saveActivityList() {
         QByteArray toFile;
         toFile.append("{");
         toFile.append(acti->name()+';');
-//        qDebug() << "Writing: " + acti->name() + " to file";
+        //        qDebug() << "Writing: " + acti->name() + " to file";
         toFile.append(QString::number(acti->grade())+';');
         toFile.append(QString::number(acti->achievedGrade())+';');
         toFile.append(QString::number(acti->activityType())+";");
@@ -207,3 +207,70 @@ void DataManager::saveActivityList() {
         disciFile.close();
     }
 }
+
+QList<ClassAppointment *> DataManager::getScheduleList() {
+    loadScheduleList();
+    return m_classesSchedule;
+}
+
+void DataManager::setScheduleList(const QList<ClassAppointment *> &schedule) {
+    m_classesSchedule = schedule;
+}
+
+void DataManager::appendScheduleList(const QList<ClassAppointment *> &list) {
+    m_classesSchedule.append(list);
+}
+
+void DataManager::loadScheduleList() {
+//    qDebug() << "Here 1";
+    QFile schedule("schedule.sa");
+    if(!schedule.open(QIODevice::ReadOnly)) {
+        qDebug() << "Could not open the file, schedule doesn't exist, load failed.";
+        return;
+    }
+
+    //### Read schedule file information ###
+    QString line;
+    while(!schedule.atEnd()) {
+        line = schedule.readLine();
+        line = line.left(line.length() - 1);
+        QStringList aptmInfo = line.split(';'); //Get appointment information
+//        qDebug() << aptmInfo.length();
+        ClassAppointment *aptm = new ClassAppointment();
+
+        aptm->setDiscipline(aptmInfo.at(0)); //Set discipline name
+
+        aptm->setDay(aptmInfo.at(1).toInt());//Set discipline's class name
+
+        QStringList time;
+        time = aptmInfo.at(2).split(':');
+        aptm->setStartsAt( QTime(time.at(0).toInt(),time.at(1).toInt() ));//Set starting time
+
+        time = aptmInfo.at(3).split(':');
+        aptm->setEndsAt( QTime(time.at(0).toInt(),time.at(1).toInt() )); //Set ending time
+
+        m_classesSchedule.append(aptm);
+    }
+//    qDebug() << "Here 2";
+    schedule.close();
+}
+
+void DataManager::saveScheduleList() {
+    //Write disciplines' activities
+    QFile schedFile("schedule.sa");//Open schedule file
+    if(!schedFile.open(QIODevice::WriteOnly)) {
+        qDebug() << "Failed to open schedule file at saveSchedule() method";
+    }
+
+    foreach (ClassAppointment* appoint, m_classesSchedule) {
+        QByteArray toFile;
+        toFile.append(appoint->discipline() + ';');
+        toFile.append(QString::number(appoint->day()) +';');
+        toFile.append(appoint->startsAt().toString("hh:mm") + ';');
+        toFile.append(appoint->endsAt().toString("hh:mm\n"));
+        schedFile.write(toFile);
+        schedFile.flush();
+    }
+    schedFile.close();
+}
+

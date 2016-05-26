@@ -5,6 +5,7 @@
 #include <QDebug>
 #include "activity.h"
 #include "discipline.h"
+#include "classappointment.h"
 
 class DataManager
 {
@@ -26,12 +27,19 @@ public:
     void loadActivityList();
     void saveActivityList();
 
+    QList<ClassAppointment *> getScheduleList();
+    void setScheduleList(const QList<ClassAppointment *> &schedule);
+    void appendScheduleList(const QList<ClassAppointment *> &list);
+    void loadScheduleList();
+    void saveScheduleList();
+
     int getLoadType() const;
     void setLoadType(int loadType);
 
 private:
     QList<Discipline *> m_disciplineList;
     QList<Activity *> m_activityList;
+    QList<ClassAppointment *> m_classesSchedule;
     int m_loadType;
 };
 

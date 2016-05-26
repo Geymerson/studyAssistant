@@ -1,19 +1,24 @@
 import QtQuick 2.5
 import QtQuick.Layouts 1.1
 import "../cmpCreator.js" as CmpCreator
+import sa.project 1.0
 
 Item {
-    //    color: "green"
+
     id: disciGrid
     anchors.centerIn: parent
-    //    anchors.horizontalCenter: parent.horizontalCenter
     width: 500
     height: 500
 
     property int cellHeight: height/10
     property int cellWidth: width/5
+    property alias schedule: schedule
 
-    Component.onCompleted: {
-        CmpCreator.startGrid()
+    Schedule {
+        id: schedule
+        Component.onCompleted: {
+//            console.log(length())
+            CmpCreator.startGrid();
+        }
     }
 }

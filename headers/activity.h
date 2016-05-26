@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QString>
 #include <QDate>
+#include <QQmlEngine>
 
 class Activity : public QObject
 {

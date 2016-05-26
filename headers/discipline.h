@@ -2,7 +2,8 @@
 #define DISCIPLINE_H
 
 #include <QObject>
-#include <QTime>
+#include <QQmlEngine>
+#include "classappointment.h"
 
 class Discipline : public QObject
 {
@@ -24,17 +25,10 @@ public:
     float grade() const;
     void setGrade(float overalGrade);
 
-    Q_INVOKABLE void insertClassTime(int index, QTime* time);
-    Q_INVOKABLE void appendClassTime(QTime* time);
-    Q_INVOKABLE void removeClassTime(int index);
-    Q_INVOKABLE void clearSchedule();
-    Q_INVOKABLE QTime* getClassTime(int index);
-    Q_INVOKABLE int scheduleLength();
-
 private:
     QString m_name;
     QString m_professor;
-    QList<QTime*> m_classSchedule;
+//    QList<ClassAppointment*> m_classSchedule;
     float m_grade;
 signals:
 

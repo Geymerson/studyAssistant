@@ -25,6 +25,11 @@ Item {
     id: root
     anchors.fill: parent
 
+    property alias schedule: gridS.schedule
+    property alias itemList: actionBox.itemList
+    property alias actionBox_z: actionBox.z
+    property alias actionBoxVisible: actionBox.visible
+
     Background {
         id: background
         screenTitle: "Grid"
@@ -44,5 +49,30 @@ Item {
             id: gridS
             z: 3
         }
+    }
+
+    ActionBox {
+        id: actionBox
+        visible: false
+        text: "Class information"
+        timePickerLabel: "From: "
+        timePickerLabel1: "To: "
+        height: background.height - background.height/4
+        componentType: 2
+        nameLabelVisible: false
+        nameTextFieldVisible: false
+        professorLabelVisible: false
+        professorTextFieldVisible: false
+        disciplineLabelVisible: true
+        disciplineComboBoxVisible: true
+        daysLabelVisible: true
+        daysComboBoxVisible: true
+        timePickerLabelVisible: true
+        timePickerTextFieldVisible: true
+        timePickerLabelVisible1: true
+        timePickerTextFieldVisible1: true
+
+
+        itemList: itemList
     }
 }

@@ -57,8 +57,8 @@ Item {
         achievedGradeTextFieldVisible: true
         disciplineLabelVisible: true
         disciplineComboBoxVisible: true
-        dateLabelVisible: true
-        dateTextFieldVisible: true
+        timePickerLabelVisible: true
+        timePickerTextFieldVisible: true
         itemList: itemList
     }
 
